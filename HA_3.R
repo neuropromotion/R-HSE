@@ -1,269 +1,74 @@
-### HW ####
-n = 10000
-x = runif(n, min=-1, max=1)
-y = runif(n, min=-1, max=1)
-
-prob = cumsum(x^2 + y^2 <= 1)[n]/n
-prob
-
-my_pi = prob * 4
-my_pi
-
-plot(4 * cumsum(x^2 + y^2 <= 1)/1:n, xlab='toses', ylab='pi')
-abline(h=pi, col='red')
-
-##########
-
-sex = c('m', 'm', 'f', 'f')
-sex
-sex1 = factor(sex)
-sex1
-
-as.factor(sex)
-
-sex2 = factor(sex, levels=c('m', 'f', 'u'))
-sex2
-
-sex1
-sex1[1]
-table(sex1)
-table(sex2)
-
-sex1
-table(sex1[1:3])
-
-table(sex2)
-table(as.character(sex2))
-
-typeof(sex1)
-attributes(sex1)
-unclass(sex1)
-
-d = factor(c('10', '5'))
-d
-as.numeric(d)
-as.numeric(as.character(d))
-
-is.factor(sex1)
-class(sex1)
-typeof(sex1)
-
-########
-
-x = list(1, 2, 'qwe')
-x
-
-x = list(c(1, 2, 4), c('qwe', TRUE))
-x
-
-x = list(abc=1:3, ltr='a', c(1, 2, 3), c(T, F))
-x
-
-str(x)
-names(x)
-names(x) = c('num', 'ltr', 'n', 'log')
-str(x)
-
-x$num
-x$ltr
-
-x[1]
-x[3]
-x[c(1, 3, 3, 2)]
-x[c(T, F, F, T)]
-x[c('log', 'num')]
-
-x[1]
-x[[1]]
-x[['num']]
-x$num
-
-x[[1]][2]
-x$num[2]
-
-typeof(x)
-
-#######
-matrix(1, ncol=3, nrow=4)
-
-a = matrix(1:9, ncol=3)
-a
-a * a
-a %*% a
-
-matrix(1:12, ncol=4)
-matrix(1:12, ncol=4, byrow=T)
-
-a = matrix(1:12, ncol=4)
-length(a)
-typeof(a)
-dim(a) # сначала число строк, потмо число колонок
-nrow(a)
-ncol(a)
-
-colnames(a) = c('a', 'b', 'c', 'd')
-a
-
-rownames(a) = c('r1', 'r2', 'r3')
-a
-
-a['r1']
-a['a']
-# не работает :(
-
-attributes(a)
-dimnames(a)
-
-x = 1:10
-x
-dim(x) = c(2, 5)
-x
-
-x = 1:10
-dim(x) = c(2, 3)
-dim(x) = c(2, 6)
-# не хочет
-
-#######
-
-a
-a[1:2,] # извлек строки
-a[,1:2] # извлек столбцы
-a[c(1, 3), c(1, 1)]
-a[c('r1', 'r3'), c('a', 'a')]
-
-a
-a[a[, 1] > 2,]
-
-a[2,]
-r = a[2,]
-dim(r)
-class(r)
-class(a)
-
-r = a[2,, drop=FALSE]
-r
-dim(r)
-class(r)
-class(a)
-
-a
-a > 5
-which(a > 5)
-which(a > 5, arr.ind=T)
-
-#####
-
-x = data.frame(a=1:3, b=c(T,T,F), c=c('a','b','c'))
-x
-cbind(a=1:3, b=c(T,T,F), c=c('a','b','c'))
-
-rownames(x) = c('r1', 'r1', 'r3')
-rownames(x) = c('r1', 'r2', 'r3')
-x
-
-colnames(x) = c('a', 'a', 'b')
-x
-colnames(x) = c('a', 'b', 'c')
-x
-
-dim(x)
-nrow(x)
-ncol(x)
-
-x
-x[2:3,]
-x[,1] > 1
-x[x[,1] > 1, c('b', 'a')]
-
-typeof(x)
-class(x)
-
-x$b
-x[, 'b']
-x[['b']]
-
-x[1,]
-x[,1]
-x[, 1, drop=FALSE]
-
-as.matrix(x)
-
-x$d = 0
-x
-x$e = 1:3
-x
-
-a
-plot(a[1,])
-dfa = as.data.frame(a)
-dfa
-plot(dfa[1,])
-plot(as.numeric(dfa[1,]))
-
-#######
-
-x
-lapply(x, typeof)
-sapply(x, typeof)
-
-l = list(1:3, F, 'a')
-l
-
-sapply(l, typeof)
-sapply(l, length)
-sapply(l, max)
-lapply(l, max)
-
-sapply(l, summary)
-lapply(l, summary)
-
-sapply(1:10, sqrt)
-
-a
-apply(a, 1, sum)
-apply(a, 2, sum)
-
-##########
-
-df = data.frame(name=c('Artem', 'Kate', 'Sanya'),
-                surname=c('Ar', 'Ka', 'Sa'),
-                age=c(24, 21, 17),
-                sex=c('m', 'f', 'f')
-                )
-df
-df[df$sex == 'm',]
-df$name
-rownames(df) = df$surname
-df
-df['Ka',]
-
-######
-
-d = matrix(runif(5*24, 36, 41), nrow=5, ncol=24)
-d
-
-d[2,] > 40
-which(d[2,] > 40)
-
-colnames(d) = paste0(1:24, 'h')
-d
-colnames(d)[d[2,] > 40]
-
-q = 5
-paste0(q, 'h')
-
-##########
-
-x = runif(100, -1, 3)
-x[sin(x) > 0]
-
-m = matrix(x, ncol=10)
-m
-
-m[m[, 6] > 1,]
-m[, apply(m, 2, min) < -0.5]
-
-#######
-
-mtcars
+# 1.
+
+# К какому типу относится переменная mtcars:
+class(mtcars) # data frame
+is.data.frame(mtcars) # убеждаемся в этом
+typeof(mtcars) # в действительности, data frame - это список  
+is.list(mtcars) # убеждаемся в этом 
+
+# второй столбец (вообще дата фрейм это список каждый столбец которого вектор,
+# так что ответ заранее известен, убедимся):
+is.vector(mtcars$cyl) # TRUE
+class(mtcars$cyl) # class numeric - значения вектора числа
+typeof(mtcars$cyl) # а именно типа с плавающей запятой
+
+mtcars['Fiat 128', 'cyl'] # 4 цилиндра 
+mtcars[mtcars$cyl == 4,] # выведем все машины у которых 4 цилиндра 
+row.names(mtcars[mtcars$cyl == 4,]) # выведем только их названия
+
+min(mtcars$cyl) # минимальное количество цилиндров так же 4, список выводил выше
+
+correlation = cor(mtcars)
+correlation
+class(correlation) # это матрица 
+is.matrix(correlation) # убеждаемся
+typeof(correlation) # из значений типа double 
+is.double(correlation) # убеждаемся 
+
+names(correlation[correlation[,1] < -0.7,1]) 
+# корреляция потребления бензина менее -0.7 наблюдается с количеством 
+# цилиндров (cyl), со смешением (disp), кол-во лошадинных сил (hp) и весом (wt)
+
+# 2.
+vec = rnorm(100, 40, 10**2) 
+vec
+vec_with_each_third = vec[c(F,F,T)] # маска оставляющая каждый 3 элемент
+vec_with_each_third 
+vec_without_each_fifth = vec[c(T,T,T,T,F)] # маска убирающая каждый 5 элемент
+vec_without_each_fifth
+# теперь подвектор состоящий из элементов с четной целой частью
+vec_int = sapply(vec, as.integer) # сначала делаем вектор применяя функцию
+# отбрасывающую дробную часть
+vec_int # получаем вектор целых чисел без дробной части
+vec_even = vec[vec_int %% 2 == 0] # применяем маску для поиска четных чисел
+vec_even
+
+
+# 3.
+# сначала сделаем листья с буквами:
+first = list('a') 
+second = list('b','c')
+third = list('d')
+fourth = list('e')
+
+left = list(first, second) # формируем левую ветвь дерева с "а", "b" и "с"
+right = list(third, fourth) # формируем правую ветвь дерева с "d", "e" 
+root = list(left, right) # формируем корень дерева 
+
+# по индексной нотации: первая цифра значит правую (1) или левую (2) ветвь
+# корневого узла, вторая цифра значит правую или левую ветвь поддерева и тд
+# проверяем:
+root[[1]][[1]][[1]] # a
+root[[1]][[2]][[1]] # b
+root[[1]][[2]][[2]] # c
+root[[2]][[1]][[1]] # d
+root[[2]][[2]][[1]] # e
+# создаем вектор и вносим туда название каждого узла:
+names = c(root[[1]][[1]][[1]], root[[1]][[2]][[1]],
+          root[[1]][[2]][[2]], root[[2]][[1]][[1]],
+          root[[2]][[2]][[1]])
+names # проверяем 
+left_branch = root[[1]] # берем левое поддерево дерева 
+left_branch
+left_branch_right_branch = root[[1]][[2]] # берем правое поддерево левого дерева
+left_branch_right_branch
