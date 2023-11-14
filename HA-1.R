@@ -1,3 +1,6 @@
+<p align="center">
+ <img width="200px" src="HA-1.png" alt="qr"/>
+</p>
 # загружаем бибоиортеки
 
 install.packages("tidyverse") 
